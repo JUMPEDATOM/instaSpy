@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 import pandas as pd
+import pickle
 import time
 import random
 import os
@@ -17,7 +18,7 @@ load_dotenv()
 ### WebDriver Setting ###
 options = webdriver.ChromeOptions()
 # options.add_experimental_option('excludeSwitches', ['enable-logging'])
-options.add_argument("--incognito")
+# options.add_argument("--incognito")
 options.binary_location = os.environ['BROWSER_PATH']
 
 driver = webdriver.Chrome(executable_path= os.environ['DRIVER_PATH'], chrome_options= options)
@@ -28,7 +29,7 @@ def authentication(url, userName, passWord):
     #open Selected URL
     driver.get(url)
     time.sleep(random.randrange(5,10))
-    
+
     #Check For Cookies
     try:
         cookiesButton = driver.find_element(By.XPATH, "//button[@class='_a9-- _a9_0']")
